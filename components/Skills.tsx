@@ -28,10 +28,16 @@ export default function Skills() {
           transition={{ duration: 0.6 }}
           className="mb-16 text-center"
         >
-          <h2 className="mb-4 text-3xl font-bold text-zinc-900 dark:text-zinc-50 sm:text-4xl">
+          <p className="mb-4 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.3em] text-ink/50 dark:text-cream/60">
+            <svg width="10" height="10" viewBox="0 0 10 10">
+              <path d="M5 0 L10 5 L5 10 L0 5 Z" fill="#fcd02c" />
+            </svg>
+            Toolbox
+          </p>
+          <h2 className="mb-4 text-3xl font-black tracking-tight text-ink dark:text-cream sm:text-4xl md:text-5xl">
             My Skills
           </h2>
-          <p className="mx-auto max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
+          <p className="mx-auto max-w-2xl text-lg font-medium text-ink/70 dark:text-cream/70">
             Technologies and tools I work with to build amazing products.
           </p>
         </motion.div>
@@ -44,16 +50,16 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="rounded-2xl border border-zinc-200 bg-white p-8 dark:border-zinc-800 dark:bg-zinc-900"
+              className="rounded-none border-2 border-ink bg-white p-8 shadow-brutal dark:border-[#f4f2eb]/60 dark:bg-[#1c1c1a] dark:shadow-black"
             >
-              <h3 className="mb-6 text-xl font-semibold text-zinc-900 dark:text-zinc-50">
+              <h3 className="mb-6 text-xl font-black text-ink dark:text-cream">
                 {category.title}
               </h3>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => (
+              <div className="flex flex-wrap gap-3">
+                {category.skills.map((skill, i) => (
                   <span
                     key={skill}
-                    className="rounded-full bg-accent-soft px-4 py-1.5 text-sm font-medium text-accent-hover"
+                    className={`${i % 2 === 1 ? "tilt" : ""} rounded-sm border-2 border-ink bg-yellow px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-ink shadow-brutal-sm`}
                   >
                     {skill}
                   </span>

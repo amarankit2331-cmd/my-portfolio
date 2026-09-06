@@ -23,7 +23,7 @@ const highlights = [
 
 export default function About() {
   return (
-    <section id="about" className="bg-zinc-50 px-6 py-24 dark:bg-zinc-950">
+    <section id="about" className="bg-cream px-6 py-24 dark:bg-[#121210]">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -32,10 +32,16 @@ export default function About() {
           transition={{ duration: 0.6 }}
           className="mb-16 text-center"
         >
-          <h2 className="mb-4 text-3xl font-bold text-zinc-900 dark:text-zinc-50 sm:text-4xl">
+          <p className="mb-4 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.3em] text-ink/50 dark:text-cream/60">
+            <svg width="10" height="10" viewBox="0 0 10 10">
+              <path d="M5 0 L10 5 L5 10 L0 5 Z" fill="#fcd02c" />
+            </svg>
+            My Story
+          </p>
+          <h2 className="mb-4 text-3xl font-black tracking-tight text-ink dark:text-cream sm:text-4xl md:text-5xl">
             About Me
           </h2>
-          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
+          <p className="mx-auto max-w-2xl text-lg font-medium leading-relaxed text-ink/70 dark:text-cream/70">
             I&rsquo;m a passionate developer with experience building web applications
             using modern technologies. I love solving problems and creating
             products that make a difference.
@@ -50,15 +56,15 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="rounded-2xl border border-zinc-200 bg-white p-8 text-center dark:border-zinc-800 dark:bg-zinc-900"
+              className="rounded-none border-2 border-ink bg-white p-8 text-center shadow-brutal dark:border-[#f4f2eb]/60 dark:bg-[#1c1c1a] dark:shadow-black"
             >
-              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-accent-soft text-accent">
+              <div className="tilt mx-auto mb-4 flex h-14 w-14 items-center justify-center border-2 border-ink bg-yellow text-ink shadow-brutal-sm dark:border-[#f4f2eb]/60">
                 <item.icon size={28} />
               </div>
-              <h3 className="mb-2 text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+              <h3 className="mb-2 text-lg font-extrabold text-ink dark:text-cream">
                 {item.title}
               </h3>
-              <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+              <p className="text-sm font-medium leading-relaxed text-ink/70 dark:text-cream/70">
                 {item.description}
               </p>
             </motion.div>

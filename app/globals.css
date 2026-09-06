@@ -1,32 +1,36 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f4f2eb;
+  --foreground: #111111;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-accent: #ff4343;
-  --color-accent-hover: #e62f2f;
-  --color-accent-soft: #ffe9e9;
-  --color-accent-border: #ffc9c9;
-  --font-sans: var(--font-geist-sans);
+  /* Neo-brutalist palette */
+  --color-cream: #f4f2eb;
+  --color-ink: #111111;
+  --color-yellow: #fcd02c;
+  --color-accent: #fcd02c;
+  --color-accent-hover: #f0c20f;
+  --color-accent-soft: #fdf6da;
+  --color-accent-border: #e8bc18;
+  --font-sans: var(--font-poppins);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #121210;
+    --foreground: #f4f2eb;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
 /* Blinking text caret used in the hero typewriter effect */
@@ -42,4 +46,55 @@ body {
 
 .animate-blink {
   animation: blink 1s step-end infinite;
+}
+
+/* ---- Neo-brutalist helpers ---- */
+
+/* Hard, no-blur offset shadows */
+.shadow-brutal {
+  box-shadow: 6px 6px 0 0 #111111;
+}
+.shadow-brutal-sm {
+  box-shadow: 3px 3px 0 0 #111111;
+}
+.shadow-brutal-yellow {
+  box-shadow: 10px 10px 0 0 #fcd02c;
+}
+.shadow-brutal-flag {
+  box-shadow: 5px 5px 0 0 #111111;
+}
+
+/* Floating wireframe geometric accents */
+.brutal-shape {
+  pointer-events: none;
+  position: absolute;
+  z-index: 5;
+  opacity: 0.85;
+}
+
+/* Simple bounce used by floating hero accents */
+@keyframes brutal-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.animate-brutal-float {
+  animation: brutal-float 5s ease-in-out infinite;
+}
+
+/* Slight playful tilt for small badges */
+.tilt {
+  transform: rotate(-2deg);
+}
+
+/* Project cards: hard black shadow that turns yellow on hover (neo-brutalist) */
+.brutal-card {
+  transition: box-shadow 0.3s ease;
+}
+.brutal-card:hover {
+  box-shadow: 10px 10px 0 0 #fcd02c;
 }

@@ -1,8 +1,8 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-zinc-200 bg-white px-6 py-8 dark:border-zinc-800 dark:bg-black">
+    <footer className="border-t-2 border-ink bg-white px-6 py-8 shadow-[0_-3px_0_0_#fcd02c] dark:border-[#f4f2eb]/60 dark:bg-[#1c1c1a] dark:shadow-black">
       <div className="mx-auto max-w-6xl text-center">
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">
+        <p className="text-sm font-bold text-ink dark:text-cream">
           © {new Date().getFullYear()} Amar Kant Nayak. All rights reserved.
         </p>
       </div>

@@ -1,74 +1,114 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code2, Rocket, Users } from "lucide-react";
+import SectionHeading from "@/components/SectionHeading";
+import Card from "@/components/ui/Card";
 
-const highlights = [
-  {
-    icon: Code2,
-    title: "Clean Code",
-    description: "Writing maintainable, well-documented, and scalable code.",
-  },
-  {
-    icon: Rocket,
-    title: "Fast Delivery",
-    description: "Building and shipping features quickly without compromising quality.",
-  },
-  {
-    icon: Users,
-    title: "Collaborative",
-    description: "Working effectively in teams and communicating clearly.",
-  },
+const bullets = [
+  "Specialized in building web applications with React and the Next.js ecosystem.",
+  "Strong foundation in full-stack development and REST API design.",
+  "Constantly exploring AI/ML and modern ways to ship better products.",
+  "Obsessed with clean code, sharp design, and the details most people miss.",
 ];
+
+const chips = [
+  { label: "location", value: "Asia" },
+  { label: "status", value: "available" },
+];
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: i * 0.08, ease: "easeOut" as const },
+  }),
+};
 
 export default function About() {
   return (
-    <section id="about" className="bg-cream px-6 py-24 dark:bg-[#121210]">
+    <section id="about" className="px-6 py-24 sm:px-8">
       <div className="mx-auto max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
-        >
-          <p className="mb-4 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.3em] text-ink/50 dark:text-cream/60">
-            <svg width="10" height="10" viewBox="0 0 10 10">
-              <path d="M5 0 L10 5 L5 10 L0 5 Z" fill="#fcd02c" />
-            </svg>
-            My Story
-          </p>
-          <h2 className="mb-4 text-3xl font-black tracking-tight text-ink dark:text-cream sm:text-4xl md:text-5xl">
-            About Me
-          </h2>
-          <p className="mx-auto max-w-2xl text-lg font-medium leading-relaxed text-ink/70 dark:text-cream/70">
-            I&rsquo;m a passionate developer with experience building web applications
-            using modern technologies. I love solving problems and creating
-            products that make a difference.
-          </p>
-        </motion.div>
+        <SectionHeading index="01" label="about" title="Who am I?" className="mb-12" />
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {highlights.map((item, index) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="rounded-none border-2 border-ink bg-white p-8 text-center shadow-brutal dark:border-[#f4f2eb]/60 dark:bg-[#1c1c1a] dark:shadow-black"
-            >
-              <div className="tilt mx-auto mb-4 flex h-14 w-14 items-center justify-center border-2 border-ink bg-yellow text-ink shadow-brutal-sm dark:border-[#f4f2eb]/60">
-                <item.icon size={28} />
-              </div>
-              <h3 className="mb-2 text-lg font-extrabold text-ink dark:text-cream">
-                {item.title}
-              </h3>
-              <p className="text-sm font-medium leading-relaxed text-ink/70 dark:text-cream/70">
-                {item.description}
+        <div className="grid gap-8 lg:grid-cols-2 lg:items-start">
+          {/* Statement */}
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            custom={0}
+            viewport={{ once: true, margin: "-80px" }}
+          >
+            <Card className="p-7">
+              <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-ink/50">
+                $ whoami
               </p>
-            </motion.div>
-          ))}
+              <p className="text-base font-medium leading-relaxed text-ink/85 sm:text-lg">
+                I&rsquo;m Amar Kant Nayak — a creative software developer who
+                believes the web has become too sanitized. I bring personality
+                back to code. I have a strong interest in full-stack
+                development, AI/ML and data-driven product thinking, and I love
+                turning ideas into real, working digital products.
+              </p>
+              <div className="mt-6 space-y-2.5">
+                {bullets.map((line, i) => (
+                  <div
+                    key={i}
+                    className="flex items-start gap-2 font-mono text-sm font-medium text-ink/75"
+                  >
+                    <span className="mt-0.5 select-none text-accent">&gt;</span>
+                    <span>{line}</span>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          </motion.div>
+
+          {/* Terminal / status panel */}
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            custom={1}
+            viewport={{ once: true, margin: "-80px" }}
+            className="flex flex-col gap-6"
+          >
+            <Card className="p-6">
+              <div className="mb-5 flex items-center gap-2 border-b-2 border-dashed border-ink/30 pb-4">
+                <span className="h-3 w-3 rounded-full border-2 border-ink bg-yellow" />
+                <span className="h-3 w-3 rounded-full border-2 border-ink bg-white" />
+                <span className="h-3 w-3 rounded-full border-2 border-ink bg-white" />
+                <span className="ml-2 font-mono text-xs font-bold uppercase tracking-widest text-ink/50">
+                  dev@amar — zsh
+                </span>
+              </div>
+              <div className="space-y-2 font-mono text-sm text-ink/80">
+                <p>
+                  <span className="text-accent">$</span> cat identity.txt
+                </p>
+                <p className="pl-4">name: Amar Kant Nayak</p>
+                <p className="pl-4">role: Full Stack Developer</p>
+                <p className="pl-4">focus: Web · AI/ML · Product</p>
+                <p className="pl-4">status: <span className="font-bold text-green-700">shipping_code</span></p>
+              </div>
+              <div className="mt-6 flex flex-wrap gap-3">
+                {chips.map((chip) => (
+                  <span
+                    key={chip.label}
+                    className="inline-flex items-center gap-2 border-2 border-ink bg-white px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-ink shadow-brutal-sm"
+                  >
+                    <span className="text-ink/50">📍</span>
+                    <span className="text-ink/50">{chip.label}:</span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <span className="h-2 w-2 rounded-full bg-green-500" />
+                      {chip.value}
+                    </span>
+                  </span>
+                ))}
+              </div>
+            </Card>
+          </motion.div>
         </div>
       </div>
     </section>

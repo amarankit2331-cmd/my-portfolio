@@ -1,30 +1,51 @@
 @import "tailwindcss";
 
+/* ============================================================
+   AMAR.exe — Brutalist System Design Tokens
+   Palette: warm cream canvas, ink black, pure white panels,
+   single yellow accent, hard offset shadows.
+   ============================================================ */
+
 :root {
   --background: #f4f2eb;
   --foreground: #111111;
-}
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  /* Neo-brutalist palette */
   --color-cream: #f4f2eb;
   --color-ink: #111111;
+  --color-paper: #ffffff;
   --color-yellow: #fcd02c;
   --color-accent: #fcd02c;
   --color-accent-hover: #f0c20f;
   --color-accent-soft: #fdf6da;
   --color-accent-border: #e8bc18;
-  --font-sans: var(--font-poppins);
-  --font-mono: var(--font-geist-mono);
+
+  --border-w: 2px;
+  --radius-raw: 2px;
+  --shadow-w: 6px;
+  --shadow-w-sm: 3px;
+  --grid-size: 72px;
+  --dot-size: 22px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #121210;
-    --foreground: #f4f2eb;
-  }
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-cream: var(--color-cream);
+  --color-ink: var(--color-ink);
+  --color-paper: var(--color-paper);
+  --color-white: var(--color-paper);
+  --color-yellow: var(--color-yellow);
+  --color-accent: var(--color-accent);
+  --color-accent-hover: var(--color-accent-hover);
+  --color-accent-soft: var(--color-accent-soft);
+  --color-accent-border: var(--color-accent-border);
+
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -33,7 +54,7 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
-/* Blinking text caret used in the hero typewriter effect */
+/* ---------- Blinking caret ---------- */
 @keyframes blink {
   0%,
   100% {
@@ -43,14 +64,11 @@ body {
     opacity: 0;
   }
 }
-
 .animate-blink {
   animation: blink 1s step-end infinite;
 }
 
-/* ---- Neo-brutalist helpers ---- */
-
-/* Hard, no-blur offset shadows */
+/* ---------- Hard offset shadows (no blur) ---------- */
 .shadow-brutal {
   box-shadow: 6px 6px 0 0 #111111;
 }
@@ -64,15 +82,37 @@ body {
   box-shadow: 5px 5px 0 0 #111111;
 }
 
-/* Floating wireframe geometric accents */
+/* Interactive press: slide toward the shadow, erase it on hover. */
+.brutal-btn {
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease;
+}
+.brutal-btn:hover {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+/* ---------- Background textures ---------- */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(17, 17, 17, 0.55) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(17, 17, 17, 0.55) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+}
+.dot-bg {
+  background-image: radial-gradient(rgba(17, 17, 17, 0.55) 1px, transparent 1px);
+  background-size: var(--dot-size) var(--dot-size);
+}
+
+/* ---------- Decorative floating shapes ---------- */
 .brutal-shape {
   pointer-events: none;
   position: absolute;
   z-index: 5;
   opacity: 0.85;
 }
-
-/* Simple bounce used by floating hero accents */
 @keyframes brutal-float {
   0%,
   100% {
@@ -85,16 +125,59 @@ body {
 .animate-brutal-float {
   animation: brutal-float 5s ease-in-out infinite;
 }
-
-/* Slight playful tilt for small badges */
 .tilt {
   transform: rotate(-2deg);
 }
 
-/* Project cards: hard black shadow that turns yellow on hover (neo-brutalist) */
+/* ---------- Marquee ribbons ---------- */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee-scroll 26s linear infinite;
+}
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+}
+.marquee-mask:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* ---------- Project cards: hard shadow turns yellow on hover ---------- */
 .brutal-card {
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 .brutal-card:hover {
   box-shadow: 10px 10px 0 0 #fcd02c;
+  transform: translate(-2px, -2px);
+}
+
+/* ---------- Scrollbar polish ---------- */
+::-webkit-scrollbar {
+  width: 14px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-ink);
+  border: 3px solid var(--color-cream);
 }

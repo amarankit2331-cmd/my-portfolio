@@ -1,70 +1,109 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Github, Linkedin, MapPin } from "lucide-react";
+import { Mail, Github, ArrowUpRight } from "lucide-react";
+import SectionHeading from "@/components/SectionHeading";
+import Card from "@/components/ui/Card";
+
+const GH = "https://github.com/amarankit2331-cmd";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 26 },
+  show: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: i * 0.08, ease: "easeOut" as const },
+  }),
+};
 
 export default function Contact() {
   return (
-    <section id="contact" className="px-6 py-24">
-      <div className="mx-auto max-w-3xl text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+    <section id="contact" className="relative px-6 py-24 sm:px-8">
+      {/* dotted texture */}
+      <div aria-hidden className="dot-bg pointer-events-none absolute inset-0 opacity-[0.14]" />
+
+      <div className="relative mx-auto max-w-4xl text-center">
+        <SectionHeading index="05" label="contact" title="Start a Project" className="mb-8 text-left sm:text-center" />
+
+        <motion.h2
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          custom={0}
+          viewport={{ once: true, margin: "-80px" }}
+          className="text-3xl font-black uppercase leading-[1.05] tracking-tight text-ink sm:text-5xl"
         >
-          <p className="mb-4 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.3em] text-ink/50 dark:text-cream/60">
-            <svg width="10" height="10" viewBox="0 0 10 10">
-              <path d="M5 0 L10 5 L5 10 L0 5 Z" fill="#fcd02c" />
-            </svg>
-            Say Hello
-          </p>
-          <h2 className="mb-4 text-3xl font-black tracking-tight text-ink dark:text-cream sm:text-4xl md:text-5xl">
-            Get In Touch
-          </h2>
-          <p className="mb-12 text-lg font-medium text-ink/70 dark:text-cream/70">
-            Have a project in mind or want to collaborate? I&rsquo;d love to hear from you!
-          </p>
+          Let&rsquo;s Talk <span className="text-accent">Code</span>.
+        </motion.h2>
+
+        <motion.p
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          custom={1}
+          viewport={{ once: true, margin: "-80px" }}
+          className="mx-auto mt-5 max-w-2xl text-base font-medium text-ink/70 sm:text-lg"
+        >
+          I&rsquo;m available for collaborations, freelance work, and part-time
+          opportunities. Have an idea? Send a message and let&rsquo;s build
+          something worth shipping.
+        </motion.p>
+
+        {/* Availability bar */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          custom={2}
+          viewport={{ once: true, margin: "-80px" }}
+          className="mx-auto mt-8 inline-flex flex-wrap items-center justify-center gap-x-5 gap-y-2 border-2 border-ink bg-white px-6 py-3 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-ink shadow-brutal-sm"
+        >
+          <span className="inline-flex items-center gap-2">
+            <span className="h-2.5 w-2.5 rounded-full bg-green-500" />
+            available for work
+          </span>
+          <span className="text-ink/30">|</span>
+          <span>remote / asia</span>
         </motion.div>
 
+        {/* Primary email CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-col items-center gap-5"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          custom={3}
+          viewport={{ once: true, margin: "-80px" }}
+          className="mt-10 flex justify-center"
         >
-          <a
-            href="mailto:amar@example.com"
-            className="flex items-center gap-3 border-2 border-ink bg-white px-6 py-3 text-lg font-extrabold text-ink shadow-brutal transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-yellow hover:shadow-none dark:border-cream dark:bg-[#1c1c1a] dark:text-cream"
-          >
-            <Mail size={24} />
-            amar@example.com
-          </a>
-          <div className="flex items-center gap-3 text-lg font-bold text-ink dark:text-cream">
-            <MapPin size={24} />
-            India
-          </div>
-          <div className="mt-4 flex gap-5">
+          <Card className="w-full max-w-xl p-7">
+            <p className="mb-3 font-mono text-xs font-bold uppercase tracking-[0.2em] text-ink/50">
+              _transmit_data
+            </p>
             <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-sm border-2 border-ink bg-white px-6 py-3 font-extrabold uppercase tracking-wider text-ink shadow-brutal transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-yellow hover:shadow-none dark:border-cream dark:bg-[#1c1c1a] dark:text-cream"
+              href="mailto:amar@example.com"
+              className="group flex items-center justify-center gap-3 break-all text-lg font-black text-ink transition-colors hover:text-accent-hover sm:text-2xl"
             >
-              <Github size={20} />
-              GitHub
+              <Mail size={24} className="shrink-0" />
+              <span>amar@example.com</span>
             </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-sm border-2 border-ink bg-white px-6 py-3 font-extrabold uppercase tracking-wider text-ink shadow-brutal transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-yellow hover:shadow-none dark:border-cream dark:bg-[#1c1c1a] dark:text-cream"
-            >
-              <Linkedin size={20} />
-              LinkedIn
-            </a>
-          </div>
+            <div className="mt-6 flex flex-wrap justify-center gap-4">
+              <a
+                href={GH}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="brutal-btn inline-flex items-center gap-2 border-2 border-ink bg-white px-6 py-3 font-mono text-sm font-bold uppercase tracking-wider text-ink shadow-brutal-sm hover:bg-accent-soft"
+              >
+                <Github size={18} /> github
+              </a>
+              <a
+                href="#contact"
+                aria-disabled
+                className="brutal-btn inline-flex items-center gap-2 border-2 border-ink bg-yellow px-6 py-3 font-mono text-sm font-bold uppercase tracking-wider text-ink shadow-brutal-sm"
+              >
+                linkedin <ArrowUpRight size={16} />
+              </a>
+            </div>
+          </Card>
         </motion.div>
       </div>
     </section>

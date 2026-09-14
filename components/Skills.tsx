@@ -1,73 +1,118 @@
 "use client";
 
 import { motion } from "framer-motion";
+import SectionHeading from "@/components/SectionHeading";
+import Card from "@/components/ui/Card";
 
-const skillCategories = [
-  {
-    title: "Frontend",
-    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "HTML/CSS", "JavaScript"],
-  },
-  {
-    title: "Backend",
-    skills: ["Node.js", "Express", "Python", "REST APIs", "GraphQL", "MongoDB"],
-  },
-  {
-    title: "Tools & Others",
-    skills: ["Git", "Docker", "AWS", "Firebase", "PostgreSQL", "CI/CD"],
-  },
+const categories = [
+  { label: "Languages", skills: ["JavaScript", "TypeScript", "Python", "HTML5", "CSS3", "SQL"] },
+  { label: "Frontend", skills: ["React", "Next.js", "Tailwind CSS", "Framer Motion"] },
+  { label: "Backend", skills: ["Node.js", "Express", "REST APIs"] },
+  { label: "Tools / Ops", skills: ["Git", "GitHub", "Docker", "AWS", "Vercel"] },
 ];
+
+const totalNodes = categories.reduce((sum, c) => sum + c.skills.length, 0);
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: i * 0.08, ease: "easeOut" as const },
+  }),
+};
 
 export default function Skills() {
   return (
-    <section id="skills" className="px-6 py-24">
+    <section id="skills" className="px-6 py-24 sm:px-8">
       <div className="mx-auto max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
-        >
-          <p className="mb-4 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.3em] text-ink/50 dark:text-cream/60">
-            <svg width="10" height="10" viewBox="0 0 10 10">
-              <path d="M5 0 L10 5 L5 10 L0 5 Z" fill="#fcd02c" />
-            </svg>
-            Toolbox
-          </p>
-          <h2 className="mb-4 text-3xl font-black tracking-tight text-ink dark:text-cream sm:text-4xl md:text-5xl">
-            My Skills
-          </h2>
-          <p className="mx-auto max-w-2xl text-lg font-medium text-ink/70 dark:text-cream/70">
-            Technologies and tools I work with to build amazing products.
-          </p>
-        </motion.div>
-
-        <div className="grid gap-8 md:grid-cols-3">
-          {skillCategories.map((category, index) => (
-            <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="rounded-none border-2 border-ink bg-white p-8 shadow-brutal dark:border-[#f4f2eb]/60 dark:bg-[#1c1c1a] dark:shadow-black"
-            >
-              <h3 className="mb-6 text-xl font-black text-ink dark:text-cream">
-                {category.title}
-              </h3>
-              <div className="flex flex-wrap gap-3">
-                {category.skills.map((skill, i) => (
-                  <span
-                    key={skill}
-                    className={`${i % 2 === 1 ? "tilt" : ""} rounded-sm border-2 border-ink bg-yellow px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-ink shadow-brutal-sm`}
+        <Card className="mb-12 overflow-hidden">
+          {/* Terminal title bar */}
+          <div className="flex items-center gap-2 border-b-2 border-ink bg-ink px-5 py-3">
+            <span className="h-3 w-3 rounded-full bg-yellow" />
+            <span className="h-3 w-3 rounded-full border-2 border-cream/40" />
+            <span className="h-3 w-3 rounded-full border-2 border-cream/40" />
+            <span className="ml-3 font-mono text-xs font-bold uppercase tracking-[0.2em] text-cream">
+              tech_stack — system_optimized
+            </span>
+          </div>
+          <div className="p-6 sm:p-8">
+            <SectionHeading index="02" label="skills" title="Tech Stack" className="mb-10" />
+            <div className="grid gap-8 lg:grid-cols-[1.6fr_1fr]">
+              {/* Category rows */}
+              <div className="space-y-5">
+                {categories.map((cat, i) => (
+                  <motion.div
+                    key={cat.label}
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="show"
+                    custom={i}
+                    viewport={{ once: true, margin: "-60px" }}
+                    className="border-2 border-ink bg-white p-5 shadow-brutal-sm"
                   >
-                    {skill}
-                  </span>
+                    <p className="mb-3 font-mono text-sm font-bold uppercase tracking-[0.18em] text-ink">
+                      <span className="text-accent">&gt;_</span> {cat.label}
+                    </p>
+                    <div className="flex flex-wrap gap-2.5">
+                      {cat.skills.map((skill, idx) => (
+                        <span
+                          key={skill}
+                          className={`border-2 border-ink px-3.5 py-1.5 font-mono text-xs font-bold uppercase tracking-wider text-ink shadow-brutal-sm ${
+                            idx % 2 === 1 ? "tilt bg-yellow" : "bg-white"
+                          }`}
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </motion.div>
                 ))}
               </div>
-            </motion.div>
-          ))}
-        </div>
+
+              {/* Stats readout */}
+              <motion.div
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="show"
+                custom={3}
+                viewport={{ once: true, margin: "-60px" }}
+                className="border-2 border-ink bg-yellow p-6 shadow-brutal"
+              >
+                <p className="mb-5 font-mono text-sm font-black uppercase tracking-[0.16em] text-ink">
+                  _system_stats
+                </p>
+                <dl className="space-y-3 font-mono text-sm text-ink">
+                  <div className="flex justify-between border-b-2 border-dashed border-ink/40 pb-2">
+                    <dt className="font-bold">TOTAL_NODES:</dt>
+                    <dd className="font-black">{String(totalNodes).padStart(2, "0")}</dd>
+                  </div>
+                  <div className="flex justify-between border-b-2 border-dashed border-ink/40 pb-2">
+                    <dt className="font-bold">CATEGORIES:</dt>
+                    <dd className="font-black">{String(categories.length).padStart(2, "0")}</dd>
+                  </div>
+                  <div className="flex justify-between border-b-2 border-dashed border-ink/40 pb-2">
+                    <dt className="font-bold">VERSION:</dt>
+                    <dd className="font-black">v1.0</dd>
+                  </div>
+                  <div className="flex justify-between border-b-2 border-dashed border-ink/40 pb-2">
+                    <dt className="font-bold">MODE:</dt>
+                    <dd className="font-black">full_stack</dd>
+                  </div>
+                  <div className="flex justify-between">
+                    <dt className="font-bold">MEMORY:</dt>
+                    <dd className="font-black inline-flex items-center gap-1.5">
+                      <span className="inline-block h-2 w-20 border border-ink bg-white">
+                        <span className="block h-full w-3/4 bg-ink" />
+                      </span>
+                      75%
+                    </dd>
+                  </div>
+                </dl>
+              </motion.div>
+            </div>
+          </div>
+        </Card>
       </div>
     </section>
   );

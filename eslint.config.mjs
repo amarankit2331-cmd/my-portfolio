@@ -12,6 +12,13 @@ const compat = new FlatCompat({
 
 const eslintConfig = defineConfig([
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    // The `///` and `//_label` glyphs are intentional brutalist design
+    // text, not comment syntax — disable the textnode heuristic.
+    rules: {
+      "react/jsx-no-comment-textnodes": "off",
+    },
+  },
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:

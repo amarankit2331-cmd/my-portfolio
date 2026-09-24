@@ -148,7 +148,7 @@ export default function Hero() {
             <Magnetic strength={4}>
               <motion.a
                 href="/Amar_Kant_Nayak_CV.pdf"
-                download
+                download="Amar_Kant_Nayak_CV.pdf"
                 whileTap={{ scale: 0.97 }}
                 className="brutal-btn inline-flex items-center gap-2.5 rounded-[2px] border-2 border-ink bg-white px-8 py-3.5 text-base font-black uppercase tracking-[0.12em] text-ink shadow-brutal hover:bg-accent-soft"
               >

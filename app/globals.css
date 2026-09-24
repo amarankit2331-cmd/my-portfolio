@@ -17,12 +17,7 @@
   --color-accent: #fcd02c;
   --color-accent-hover: #f0c20f;
   --color-accent-soft: #fdf6da;
-  --color-accent-border: #e8bc18;
 
-  --border-w: 2px;
-  --radius-raw: 2px;
-  --shadow-w: 6px;
-  --shadow-w-sm: 3px;
   --grid-size: 72px;
   --dot-size: 22px;
 }
@@ -38,7 +33,6 @@
   --color-accent: var(--color-accent);
   --color-accent-hover: var(--color-accent-hover);
   --color-accent-soft: var(--color-accent-soft);
-  --color-accent-border: var(--color-accent-border);
 
   --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
@@ -74,12 +68,6 @@ body {
 }
 .shadow-brutal-sm {
   box-shadow: 3px 3px 0 0 #111111;
-}
-.shadow-brutal-yellow {
-  box-shadow: 10px 10px 0 0 #fcd02c;
-}
-.shadow-brutal-flag {
-  box-shadow: 5px 5px 0 0 #111111;
 }
 
 /* Interactive press: slide toward the shadow, erase it on hover. */

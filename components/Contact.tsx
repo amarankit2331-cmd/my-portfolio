@@ -4,17 +4,11 @@ import { motion } from "framer-motion";
 import { Mail, Github, ArrowUpRight } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import Card from "@/components/ui/Card";
+import { makeFadeUp } from "@/components/ui/motion";
 
 const GH = "https://github.com/amarankit2331-cmd";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 26 },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay: i * 0.08, ease: "easeOut" as const },
-  }),
-};
+const fadeUp = makeFadeUp(26, 0.08);
 
 export default function Contact() {
   return (

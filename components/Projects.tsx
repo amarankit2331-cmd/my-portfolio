@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import ProjectCard from "@/components/ProjectCard";
+import { makeFadeUp } from "@/components/ui/motion";
 
 /* NOTE: real links/descriptions pending — github points at your profile so it
    always resolves; demos are "#" until live URLs are provided. */
@@ -44,14 +45,7 @@ const projects = [
   },
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 26 },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay: i * 0.08, ease: "easeOut" as const },
-  }),
-};
+const fadeUp = makeFadeUp(26, 0.08);
 
 export default function Projects() {
   return (

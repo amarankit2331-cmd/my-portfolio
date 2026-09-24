@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import SectionHeading from "@/components/SectionHeading";
 import Card from "@/components/ui/Card";
+import { makeFadeUp } from "@/components/ui/motion";
 
 const logLines = [
   { time: "13:00:01", tag: "init", tone: "text-ink", msg: "security headers applied — ok" },
@@ -14,14 +15,7 @@ const logLines = [
   { time: "13:00:07", tag: "career", tone: "text-ink/70", msg: "node.log — building digital products" },
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay: i * 0.05, ease: "easeOut" as const },
-  }),
-};
+const fadeUp = makeFadeUp(24, 0.05);
 
 export default function Logs() {
   return (

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import SectionHeading from "@/components/SectionHeading";
 import Card from "@/components/ui/Card";
+import { makeFadeUp } from "@/components/ui/motion";
 
 const bullets = [
   "Specialized in building web applications with React and the Next.js ecosystem.",
@@ -16,14 +17,7 @@ const chips = [
   { label: "status", value: "available" },
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay: i * 0.08, ease: "easeOut" as const },
-  }),
-};
+const fadeUp = makeFadeUp(24, 0.08);
 
 export default function About() {
   return (
